@@ -1,0 +1,26 @@
+joblib==0.14.1
+numpy==1.16.6
+opencv-contrib-python==4.2.0.32
+pandas==0.24.2
+pickle-compat==2.1.0
+python-dateutil==2.8.2
+pytz==2021.3
+PyYAML==5.4.1
+scikit-learn==0.20.4
+scipy==1.2.3
+six==1.16.0
+xlrd==1.0.0
+
+
+README
+
+Steps to Execute Code:
+
+     1. Run both python files train.py and test.py in that order
+     2 model.pkl file is generated when train.py is run
+     3. After the test.py is run, a Results.csv file will be generated as the output.
+
+NOTE:
+     1. The code is written using Python 2.7.16.
+     2. We need to install libraries mentioned at the top of this file as the code uses it.
+     3. The input files which are InsulinData.csv, CGMData.csv,Insulin_patient2.csv and CGM_patient2.csv should be in the same directory as the executable files
