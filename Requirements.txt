@@ -1,0 +1,11 @@
+README
+
+Steps to Execute Code:
+
+     1. Run the python file main.py using the command: python main.py
+     2. After the file is run, a Results.csv file will be generated as the output.
+
+NOTE:
+     1. The code is written using Python 2.7.16.
+     2. We need to install pandas library as the code uses it.
+     3. The input files which are InsulinData.csv and CGMData.csv should be in the same directory as the executable file, main.py
