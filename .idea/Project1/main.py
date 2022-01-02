@@ -45,12 +45,12 @@ if __name__ == '__main__':
     cgm_fields = ['Date', 'Time','Sensor Glucose (mg/dL)']
 
     # Read the CGMData.csv file as a data frame
-    cgm_df = pd.read_csv("CGMData.csv", encoding="ISO-8859-1",low_memory=False,usecols=cgm_fields)
+    cgm_df = pd.read_csv("CGMData.csv", encoding="ISO-8859-1", low_memory=False, usecols=cgm_fields)
     # Handle missing values using linear interpolation
     cgm_df['Sensor Glucose (mg/dL)'] = cgm_df['Sensor Glucose (mg/dL)'].interpolate(method='linear', limit_direction='both')
 
     # Read the InsulinData.csv file as a data frame
-    insulin_file_df = pd.read_csv("InsulinData.csv", encoding="ISO-8859-1",low_memory=False,usecols=insulin_fields)
+    insulin_file_df = pd.read_csv("InsulinData.csv", encoding="ISO-8859-1", low_memory=False, usecols=insulin_fields)
 
     # Filter out all the data which does not contain Alarm column value as 'AUTO MODE ACTIVE PLGM OFF'
     insulin_file_df = insulin_file_df[insulin_file_df['Alarm'] == 'AUTO MODE ACTIVE PLGM OFF']
