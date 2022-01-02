@@ -130,14 +130,14 @@ if __name__ == "__main__":
     # Find the confidence of the rule (X,Y) -> Z
     frequent_rules['confidence'] = frequent_rules['frequency'] / frequent_rules['rule_frequency']
     # Find the value with maximum confidence
-    largest_confidence = frequent_rules['confidence'].max()
+    largest_conf = frequent_rules['confidence'].max()
     # Locate all the rules which have maximum confidence
-    largest_confidence_rules = frequent_rules.loc[frequent_rules['confidence'] == largest_confidence][
+    largest_conf_rules = frequent_rules.loc[frequent_rules['confidence'] == largest_conf][
         ['b_max', 'b_meal', 'insulin_bolus']]
-    largest_confidence_rules = largest_confidence_rules.apply(lambda x: '{{{0},{1}}} -> {2}'.format(x[0], x[1], x[2]),
+    largest_conf_rules = largest_conf_rules.apply(lambda x: '{{{0},{1}}} -> {2}'.format(x[0], x[1], x[2]),
                                                               axis=1)
 
-    largest_confidence_rules.to_csv('ConfidenceRules.csv', header=False, index=False)
+    largest_conf_rules.to_csv('ConfidenceRules.csv', header=False, index=False)
     # Filter all the rules whose confidence is less than 0.15
     # These rules are anomalous rules
 
