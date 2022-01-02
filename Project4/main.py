@@ -15,7 +15,6 @@ def capture_data_meal_no_meal(cgm_data, insulin_data, is_meal) :
     '''
 
     time_of_data, meal_no_meal_data,bolus_data= [],[],[]
-    cgm_min = float('inf')
     if is_meal is True:
         reqMinuteDur = 120
         reqLength = 30
@@ -128,7 +127,7 @@ if __name__ == "__main__":
 
     frequent_rules = itemsets_df.groupby(['b_max', 'b_meal']).size().reset_index(name='rule_frequency')
     frequent_rules = pd.merge(frequency_itemsets, frequent_rules, on=['b_max', 'b_meal'])
-    # Find the confidenc eof the rule (X,Y) -> Z
+    # Find the confidence of the rule (X,Y) -> Z
     frequent_rules['confidence'] = frequent_rules['frequency'] / frequent_rules['rule_frequency']
     # Find the value with maximum confidence
     largest_confidence = frequent_rules['confidence'].max()
@@ -137,9 +136,11 @@ if __name__ == "__main__":
         ['b_max', 'b_meal', 'insulin_bolus']]
     largest_confidence_rules = largest_confidence_rules.apply(lambda x: '{{{0},{1}}} -> {2}'.format(x[0], x[1], x[2]),
                                                               axis=1)
+
     largest_confidence_rules.to_csv('ConfidenceRules.csv', header=False, index=False)
     # Filter all the rules whose confidence is less than 0.15
     # These rules are anomalous rules
+
     anomalous_rules = frequent_rules.loc[frequent_rules['confidence'] < 0.15][['b_max', 'b_meal', 'insulin_bolus']]
     anomalous_rules = anomalous_rules.apply(lambda x: '{{{0},{1}}} -> {2}'.format(x[0], x[1], x[2]), axis=1)
     anomalous_rules.to_csv('AnomalousRules.csv', header=False, index=False)
